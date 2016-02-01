@@ -110,7 +110,7 @@ class nginx (
   $configtest_enable              = false,
   $service_ensure                 = running,
   $service_flags                  = undef,
-  $service_restart                = '/etc/init.d/nginx configtest && /etc/init.d/nginx restart',
+  $service_restart                = '/etc/init.d/nginx reload',
   $service_name                   = undef,
   ### END Service Configuration ###
 
@@ -296,12 +296,12 @@ class nginx (
     service_flags     => $service_flags,
   }
 
-  create_resources('::nginx::resource::upstream', $nginx_upstreams)
-  create_resources('::nginx::resource::vhost', $nginx_vhosts, $nginx_vhosts_defaults)
-  create_resources('::nginx::resource::location', $nginx_locations)
-  create_resources('::nginx::resource::mailhost', $nginx_mailhosts)
-  create_resources('::nginx::resource::map', $string_mappings)
-  create_resources('::nginx::resource::geo', $geo_mappings)
+  create_resources('nginx::resource::upstream', $nginx_upstreams)
+  create_resources('nginx::resource::vhost', $nginx_vhosts, $nginx_vhosts_defaults)
+  create_resources('nginx::resource::location', $nginx_locations)
+  create_resources('nginx::resource::mailhost', $nginx_mailhosts)
+  create_resources('nginx::resource::map', $string_mappings)
+  create_resources('nginx::resource::geo', $geo_mappings)
 
   # Allow the end user to establish relationships to the "main" class
   # and preserve the relationship to the implementation classes through
