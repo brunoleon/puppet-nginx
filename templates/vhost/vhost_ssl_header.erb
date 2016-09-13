@@ -49,7 +49,7 @@ server {
 
 <%= scope.function_template(["nginx/vhost/vhost_ssl_settings.erb"]) %>
 <% if @maintenance -%>
-  <%= @maintenance_value %>;
+  <%= @maintenance_value %>
 <% end -%>
 <% if Array(@resolver).count > 0 -%>
   resolver                  <% Array(@resolver).each do |r| %> <%= r %><% end %>;
